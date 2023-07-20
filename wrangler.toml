@@ -49,3 +49,8 @@ compatibility_date = "2023-07-17"
 # [[migrations]]
 # tag = "v1"
 # new_classes = ["MyDurableObject"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "visitors"
+database_id = "509249aa-89e3-4e56-94a9-e7a800e94d09"
