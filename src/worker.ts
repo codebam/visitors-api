@@ -14,9 +14,10 @@ export default {
 			return Response.json(results);
 		}
 		if (pathname === '/visitors/add') {
-			const { results } = await env.DB.prepare('INSERT INTO visitors VALUES (?, ?, ?, ?)')
-				.bind(request.cf?.country, request.cf?.city, request.cf?.latitude, request.cf?.longitude)
+			const { results } = await env.DB.prepare('INSERT INTO visitors VALUES (?, ?, ?, ?, ?)')
+				.bind(request.cf?.country, request.cf?.city, request.cf?.latitude, request.cf?.longitude, request.headers.get('x-real-ip'))
 				.all();
+			console.log(results);
 		}
 		return new Response('Call /visitors to see everyone who visit. Call /visitors/add to add yourself as a visitor.');
 	},
