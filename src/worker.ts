@@ -27,10 +27,13 @@ const router = new WorkerRouter()
 		const { results } = await ctx.env.DB.prepare(all_visitors).all();
 		return Response.json(results);
 	})
-	.any('*', () =>
-		ok(
-			'Call /visitors to see everyone who visit.\nCall /visitors/add to add yourself as a visitor.\nCall /visitors/remove to remove yourself as a visitor.'
-		)
-	);
+	.any('*', async (_req, ctx) => {
+		const { results } = await ctx.env.DB.prepare('SELECT COUNT(*) as count from visitors').all().catch(console_error);
+		return ok(
+			results[0]?.count +
+				' visitors' +
+				'\nCall /visitors to see everyone who visit.\nCall /visitors/add to add yourself as a visitor.\nCall /visitors/remove to remove yourself as a visitor.'
+		);
+	});
 
 export default router;
