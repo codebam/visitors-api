@@ -17,6 +17,7 @@ const default_page = async (ctx: RouteContext) => html`<!DOCTYPE html>
 	<html>
 		<head>
 			<title>${await visitors_count(ctx)} visitors</title>
+			<meta name="viewport" content="width=device-width" />
 			${default_styles}
 		</head>
 		<body>
