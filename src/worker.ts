@@ -38,7 +38,7 @@ const visitors_count = async (ctx: RouteContext): Promise<number> => {
 };
 
 const router = new WorkerRouter()
-	.get('/api/visitors', async (req, ctx) => ok((await visitors_count(ctx)).toString()))
+	.get('/api/visitors', async (_req, ctx) => ok((await visitors_count(ctx)).toString()))
 	.get('/visitors/get', async (_req, ctx) => response_all_visitors(ctx))
 	.get('/visitors/add', async (req, ctx) => {
 		await ctx.env.DB.prepare('INSERT INTO visitors VALUES (?, ?, ?, ?, ?)')
