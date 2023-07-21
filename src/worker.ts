@@ -10,7 +10,7 @@ const all_visitors = 'SELECT country, city, latitude, longitude FROM visitors';
 const console_error = (e: Error) => console.error(e);
 
 const router = new WorkerRouter()
-	.get('/visitors', async (req, ctx) => {
+	.get('/visitors', async (_req, ctx) => {
 		const { results } = await ctx.env.DB.prepare(all_visitors).all();
 		return Response.json(results);
 	})
